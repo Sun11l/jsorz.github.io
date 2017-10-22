@@ -130,8 +130,8 @@
         <category>javascript</category>
       </categories>
       <tags>
-        <tag>常用片段</tag>
         <tag>javascript</tag>
+        <tag>常用片段</tag>
       </tags>
   </entry>
   <entry>
@@ -142,8 +142,8 @@
         <category>javascript</category>
       </categories>
       <tags>
-        <tag>常用片段</tag>
         <tag>javascript</tag>
+        <tag>常用片段</tag>
       </tags>
   </entry>
   <entry>
@@ -158,6 +158,18 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[常用模式片段之 sticky position]]></title>
+    <url>%2Fblog%2F2016%2F10%2Fcode-patterns-of-sticky-position.html</url>
+    <content type="text"><![CDATA[以前面试当被问到 css position 能取哪些值时，只回答了 relative absolute fixed 外加 static inherit，在 MDN 上可以看到有个新增的实验性的 position sticky sticky 定义就是将某个元素固定在某个位置，乍一看和 fixed 定位有点像，但它们有以下不同 fixed是相对于 viewport 来定位，而sticky是相对于该元素在流中的 flow root（BFC）和 containing block（最近的块级祖先元素）定位。 fixed会使元素脱离文档流，而sticky则不会，后续元素的位置仍按照未定位时的位置来确定。 简单的demo sticky 踩坑使用时的注意点 具有sticky属性的元素，其父级高度必须大于sticky元素的高度 sticky元素的底部，不能和父级底部重叠 sticky元素的父级不能含有 overflow:hidden 和 overflow:auto 属性 必须具有top或bottom属性，如果同时定义了top和bottom，top胜 sticky元素仅在他父级容器内有效，超出容器范围则不再生效了 浏览器兼容性 Chrome已经不再支持sticky属性 【2017更新】Chrome 56 开始支持了 Safari 从 6.1开始支持，但表现也不太完美 Firefox 从版本 32开始支持了 IE一直不支持，放弃吧… js 实现以前没有position: sticky的时候，都必须用 js 监听滚动并且动态改变元素定位方式，才能实现相应的效果 具体实现思路是 保存元素初始的位置，判断当前距离 viewport 的位置 如果&lt;=定义的 top 值，则将元素改为fixed定位 在元素上挂个 data-sticky 作为标记 并且在文档流中插入一个与之同样大小的占位元素 否则恢复元素初始的位置，删除 data-sticky 标记，并删除占位元素 现有 jquery 插件 jquery.pin fixed-sticky 判断浏览器是否支持sticky1234567891011121314function supportSticky() &#123; var _supportCSS = function(property, value)&#123; var el = document.createElement(&apos;i&apos;); el.style[property] = value; var r = el.style[property]; el = null; return r === value; &#125;; var supportVals = [&apos;-webkit-sticky&apos;, &apos;-ms-sticky&apos;, &apos;sticky&apos;].filter(function(item)&#123; return _supportCSS(&apos;position&apos;, item); &#125;); return supportVals.length ? supportVals[0] : null;&#125;]]></content>
+      <categories>
+        <category>css</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+        <tag>常用片段</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[常用模式片段之JS视窗]]></title>
     <url>%2Fblog%2F2016%2F10%2Fcode-patterns-of-js-viewport.html</url>
     <content type="text"><![CDATA[继续【常用模式片段】系列的JS部分，首先整理了下关于滚动视窗的一些判定方法，经常用于做各种滚动相关的交互效果，比如滚动刷新，图片延迟加载（当图片位于视窗范围内才加载） 一、页面scrollTop在jquery中直接$(window).scrollTop()就完事了，但也要知道在原生js中的兼容性写法为 1window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop 可参考如下 关于pageYOffset scrollY scrollTop的小结 stackoverflow中的问答 二、判断元素距离视窗的距离元素距视窗顶部 deltaTop = el.offset().top - 页面scrollTop 判断是否在当前视窗范围内的临界值 (式1) deltaTop - TOP_MARGIN &gt; 0 元素距视窗底部 deltaBottom = window.innerHeight - deltaTop - el.outerHeight() 判断是否在当前视窗范围内的临界值 (式2) deltaBottom - BOTTOM_MARGIN &gt; 0 替换deltaBottom的计算式后，上式等价于 (式3) deltaTop &lt; window.innerHeight - el.outerHeight() - BOTTOM_MARGIN 注：以上【TOP_MARGIN】【BOTTOM_MARGIN】表示距离视窗范围的固定量，类似于fixed定位时的 top bottom 所代表的距离。 综上，如果要判定一个元素是否在视窗范围内，只要同时满足 (式1)(式2/式3) 即可。 三、判断到达页面底部在各种手机app上经常能看到到达页面底部后，就自动触发“下拉刷新”的交互。这里与上面类似但又有所不同 先定义两个值，表示整个文档的可见区域高度和可滚动距离（针对移动端的写法） viewHeight = document.documentElement.clientHeight scrollHeight = document.documentElement.scrollHeight 判定是否到达页面底部的临界值 scrollHeight - window.pageYOffset - viewHeight &lt; BOTTOM_MARGIN 这里【BOTTOM_MARGIN】表示距离页面底部的可接受距离。 附offsetHeight &amp; clientHeight &amp; scrollHeight参考文章：JavaScript中的各种宽高以及位置总结 几种窗口的宽度document.documentElement.offsetWidth：视窗宽度（不滚动的情况下，一屏可以看到多宽的文档），且不包含滚动条的宽度 document.body.offsetWidth：页面文档真正的宽度，可以通过滚动看到的文档的全部宽度 window.innerWidth：同“视窗宽度”，但貌似在 IE8 下与 document.documentElement.offsetWidth 不相等 window.outerWidth：整个浏览器窗口的宽度，如果不开调试工具窗口，一般情况下其等于 视窗宽度 + 滚动条宽度 window.screen.width：整个屏幕的宽度，与你怎么拖拽窗口大小没有关系。。。 window.screen.availWidth：啥情况下会小于 window.screen.width ？(TODO)]]></content>
@@ -165,8 +177,8 @@
         <category>javascript</category>
       </categories>
       <tags>
-        <tag>常用片段</tag>
         <tag>javascript</tag>
+        <tag>常用片段</tag>
       </tags>
   </entry>
   <entry>
@@ -337,8 +349,8 @@
         <category>mobile</category>
       </categories>
       <tags>
-        <tag>css</tag>
         <tag>javascript</tag>
+        <tag>css</tag>
         <tag>mobile</tag>
       </tags>
   </entry>
@@ -479,8 +491,8 @@
         <category>css</category>
       </categories>
       <tags>
-        <tag>css</tag>
         <tag>读书笔记</tag>
+        <tag>css</tag>
       </tags>
   </entry>
   <entry>
@@ -491,8 +503,8 @@
         <category>css</category>
       </categories>
       <tags>
-        <tag>css</tag>
         <tag>读书笔记</tag>
+        <tag>css</tag>
       </tags>
   </entry>
   <entry>
