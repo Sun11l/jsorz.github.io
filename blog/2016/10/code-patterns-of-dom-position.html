@@ -75,7 +75,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="css,常用片段," />
+  <meta name="keywords" content="javascript,常用片段," />
 
 
 
@@ -92,7 +92,7 @@
 
 
 <meta name="description" content="获取元素相对于页面左上角的位置，是比较常用的需求。比如将一个浮层元素定位到当前操作的元素附近，就需要计算当前操作的元素相对于页面左上角的位置，然后将浮层元素也绝对定位到该位置附近。">
-<meta name="keywords" content="css,常用片段">
+<meta name="keywords" content="javascript,常用片段">
 <meta property="og:type" content="article">
 <meta property="og:title" content="常用模式片段之元素偏移量">
 <meta property="og:url" content="http://jsorz.cn/blog/2016/10/code-patterns-of-dom-position.html">
@@ -100,7 +100,7 @@
 <meta property="og:description" content="获取元素相对于页面左上角的位置，是比较常用的需求。比如将一个浮层元素定位到当前操作的元素附近，就需要计算当前操作的元素相对于页面左上角的位置，然后将浮层元素也绝对定位到该位置附近。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://jsorz.cn/images/captures/20161011_dom_position.jpg">
-<meta property="og:updated_time" content="2017-10-22T02:17:53.000Z">
+<meta property="og:updated_time" content="2017-10-23T01:31:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常用模式片段之元素偏移量">
 <meta name="twitter:description" content="获取元素相对于页面左上角的位置，是比较常用的需求。比如将一个浮层元素定位到当前操作的元素附近，就需要计算当前操作的元素相对于页面左上角的位置，然后将浮层元素也绝对定位到该位置附近。">
@@ -363,8 +363,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/css/" itemprop="url" rel="index">
-                    <span itemprop="name">css</span>
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
                   </a>
                 </span>
 
@@ -413,7 +413,7 @@
 <p>思路就是取元素<code>offsetTop</code>和<code>offsetLeft</code>，然后使用<code>offsetParent</code>逐层向上直到根元素，这样就取出了相对于页面左上角的偏移。</p>
 <p><img src="/images/captures/20161011_dom_position.jpg"></p>
 <h3 id="clientRect-法"><a href="#clientRect-法" class="headerlink" title="clientRect 法"></a>clientRect 法</h3><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Element/getBoundingClientRect" target="_blank" rel="external">getBoundingClientRect</a> 取出的是元素相对于视窗的距离，那么再加上页面滚动条的偏移，就可以求出元素相对于页面左上角的距离。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">function getOffset(el) &#123;</div><div class="line">  if (el === document.documentElement) &#123;</div><div class="line">    return &#123; top: 0, left: 0 &#125;;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  const box = el.getBoundingClientRect();</div><div class="line">  let top = 0;</div><div class="line">  let left = 0;</div><div class="line"></div><div class="line">  if (window.pageYOffset !== undefined) &#123;</div><div class="line">	top = Math.floor(box.top + window.pageYOffset);</div><div class="line">    left = Math.floor(box.left + window.pageXOffset);</div><div class="line">  &#125;</div><div class="line">  else &#123;</div><div class="line">  	// 有个 bad case 即当HTML或者BODY元素有 border width 时，会有偏差</div><div class="line">  	top = Math.floor(box.top) + Math.max(doc.documentElement.scrollTop, doc.body.scrollTop);</div><div class="line">    left = Math.floor(box.left) + Math.max(doc.documentElement.scrollLeft, doc.body.scrollLeft);</div><div class="line"></div><div class="line">    top -= doc.documentElement.clientTop;</div><div class="line">    left -= doc.documentElement.clientLeft;</div><div class="line">  &#125;</div><div class="line">  return &#123; top: top, left: left &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">function getOffset(el) &#123;</div><div class="line">  if (el === document.documentElement) &#123;</div><div class="line">    return &#123; top: 0, left: 0 &#125;;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  const box = el.getBoundingClientRect();</div><div class="line">  let top = 0;</div><div class="line">  let left = 0;</div><div class="line"></div><div class="line">  if (window.pageYOffset !== undefined) &#123;</div><div class="line">    top = Math.floor(box.top + window.pageYOffset);</div><div class="line">    left = Math.floor(box.left + window.pageXOffset);</div><div class="line">  &#125;</div><div class="line">  else &#123;</div><div class="line">    // 有个 bad case 即当HTML或者BODY元素有 border width 时，会有偏差</div><div class="line">    top = Math.floor(box.top) + Math.max(doc.documentElement.scrollTop, doc.body.scrollTop);</div><div class="line">    left = Math.floor(box.left) + Math.max(doc.documentElement.scrollLeft, doc.body.scrollLeft);</div><div class="line">    </div><div class="line">    top -= doc.documentElement.clientTop;</div><div class="line">    left -= doc.documentElement.clientLeft;</div><div class="line">  &#125;</div><div class="line">  return &#123; top: top, left: left &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>可见<code>getBoundingClientRect</code>方法比取<code>offsetParent</code>效率要高的多，并且搭配<code>window.pageYOffset</code>代码更简单。</p>
 <h3 id="jquery-法"><a href="#jquery-法" class="headerlink" title="jquery 法"></a>jquery 法</h3><p>使用 jquery 里的<code>offset</code> 和 <code>position</code>，可分别获取相对于页面左上角和相对于父元素的偏移。</p>
 <p>源码参见<a href="https://github.com/jquery/jquery/blob/1.7.2/src/offset.js#L7" target="_blank" rel="external">https://github.com/jquery/jquery/blob/1.7.2/src/offset.js#L7</a>，而在1.9版本中简化了其实现<a href="https://github.com/jquery/jquery/blob/1.9.1/src/offset.js#L1" target="_blank" rel="external">https://github.com/jquery/jquery/blob/1.9.1/src/offset.js#L1</a></p>
@@ -448,7 +448,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/css/" rel="tag"># css</a>
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
           
             <a href="/tags/常用片段/" rel="tag"># 常用片段</a>
           
@@ -549,7 +549,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
