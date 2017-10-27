@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[尾调用尾递归]]></title>
     <url>%2Fblog%2F2017%2F10%2Ftail-call-recursion.html</url>
-    <content type="text"><![CDATA[本文来源于一道题目：以下递归函数存在栈溢出的风险，请问如何优化？ 123function factorial (n) &#123; return n * factorial(n - 1)&#125; 一看，递归没写退出条件，太 easy 了 1234function factorial (n) &#123; if (n === 1) return n; return n * factorial(n - 1);&#125; 应该是题目故意埋的坑，当n很大的时候，仍会溢出，因为函数调用时会不断的压栈 出题者的意图应该是使用尾递归~~（见参考链接） 1234function factorial (n, total) &#123; if (n === 1) return total; return factorial(n - 1, n * total);&#125; 然而放在浏览器试下，factorial(10000, 1)仍是溢出的。。 因为，ES6 的尾调用优化只在严格模式下开启，正常模式是无效的~ 参考链接 stackoverflow: What is tail recursion? ruanyifeng: 尾调用优化 ruanyifeng: es6尾递归优化]]></content>
+    <content type="text"><![CDATA[本文来源于一道题目：以下递归函数存在栈溢出的风险，请问如何优化？ 123function factorial (n) &#123; return n * factorial(n - 1);&#125; 普通递归一看，递归没写退出条件，太 easy 了 1234function factorial (n) &#123; if (n === 1) return n; return n * factorial(n - 1);&#125; 应该是题目故意埋的坑，当n很大的时候，仍会溢出，因为函数调用时会不断的压栈 文艺递归出题者的意图应该是使用尾递归~~（见参考链接） 1234function factorial (n, total) &#123; if (n === 1) return total; return factorial(n - 1, n * total);&#125; 然而放在浏览器试下，factorial(10000, 1)仍是溢出的。。 因为，ES6 的尾调用优化只在严格模式下开启，正常模式是无效的~ 尾递归转化123456789101112131415161718192021function tailCall (f) &#123; let value; let active = false; const argsQueue = []; return function () &#123; argsQueue.push(arguments); if (!active) &#123; active = true; while (argsQueue.length) &#123; value = f.apply(null, argsQueue.shift()); &#125; active = false; return value; &#125; &#125;&#125;const factorial = tailCall(function (n, total) &#123; if (n === 1) return total; return factorial(n - 1, n * total);&#125;); 当执行factorial(3, 1)的时候，它会先在argsQueue.push([3, 1])，然后执行到while循环里，这时执行f.apply(null, [3, 1])其实才是真正要递归的函数。 然后又执行了factorial(2, 3)，因此又在argsQueue.push([2, 3])。而由于前一次已经将active置位了，所以factorial(2, 3)就算执行结束了，无返回值 回到第一次的while里，发现argsQueue多了条[2, 3]，于是继续调用f.apply(null, [2, 3])。同理，会执行factorial(1, 6)，又在argsQueue.push([1, 6])。 再次回到第一次的while里，发现argsQueue又多了条[1, 6]，于是继续调用f.apply(null, [1, 6])。而注意此时f(1, 6)直接返回total了，因此argsQueue里没有新增参数了，于是factorial就返回了value = 6 以上过程说白了仍是递归，区别在于普通递归时函数调用里继续函数调用，需要保存函数调用前的上下文（context）信息。而使用了尾递归转化后，递归调用时只会向共享的argsQueue里压入参数，在外层通过循环的方式（直到argsQueue为空）逐步调用函数主体。 参考链接stackoverflow: What is tail recursion? ruanyifeng: 尾调用优化 ruanyifeng: es6尾递归优化]]></content>
       <categories>
         <category>javascript</category>
       </categories>
@@ -385,8 +385,8 @@
         <category>思考</category>
       </categories>
       <tags>
-        <tag>面试</tag>
         <tag>前端</tag>
+        <tag>面试</tag>
       </tags>
   </entry>
   <entry>
