@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>抽奖抽奖</title>
+  <link rel="stylesheet" href="./assets/element-ui@2.1.0.css">
+  <link rel="stylesheet" href="./assets/style.css">
+</head>
+<body>
+  <div id="app">
+    <div class="page-title">2018年运行检修工区联合新春联欢会</div>
+
+    <div class="game-block">
+      <div class="game-title">
+        <h2>{{ gameProcess.title }}</h2>
+        <p class="subtitle" v-if="gameProcess.subtitle">
+          {{ gameProcess.subtitle }}
+          <span v-if="gameProcess.hitCount">x {{ gameProcess.hitCount }}</span>
+        </p>
+      </div>
+
+      <div class="game-content">
+        <!-- 即将抽奖 -->
+        <div class="game-ready" v-if="gameProcess.status === 'READY'">
+          <!-- <div class="big-text">Ready</div> -->
+        </div>
+        <!-- 摇奖中 -->
+        <div class="game-running" v-if="gameProcess.status === 'RUNNING'">
+          <ul class="random-name-list">
+            <li class="lucky-name" v-for="i in randomIndexes">{{ candidates[i] }}</li>
+          </ul>
+        </div>
+        <!-- 中奖结果 -->
+        <div class="game-stop" v-if="gameProcess.status === 'STOP'">
+          <ul class="random-name-list">
+            <li class="lucky-name" v-for="name in curLuckyNames">{{ name }}</li>
+          </ul>
+        </div>
+        <!-- 颁奖间歇 -->
+        <div class="game-break" v-if="gameProcess.status === 'BREAK'">
+          <div class="game-record" v-for="history in breakHistoryRecords">
+            <h3>{{ history.subtitle || history.title }}</h3>
+            <ul class="lucky-name-list">
+              <li class="lucky-name" v-for="name in history.luckyNames">{{ name }}</li>
+            </ul>
+          </div>
+        </div>
+        <!-- GAME OVER -->
+        <div class="game-over" v-if="gameProcess.status === 'OVER'">
+          <div class="big-text">恭喜发财<br>万事如意</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="game-control">
+      <el-button v-if="gameProcess.status !== 'OVER'" ref="action"
+        key="next-btn" type="danger" @click="next">{{ gameBtnText }}</el-button>
+      <el-button v-if="gameProcess.status === 'OVER'"
+        key="extra-btn" type="danger" @click="extraDialog.visible = true">再加一轮</el-button>
+    </div>
+    <el-button class="game-reset" ref="reset"
+      type="text" @click="reset">Reset</el-button>
+    <el-button class="game-export" ref="export"
+      type="text" @click="exportDialog.visible = true">Export</el-button>
+
+    <audio class="game-audio" :src="audioSrc" ref="audio"
+      autoplay :loop="gameProcess.status !== 'STOP'">
+    </audio>
+    <span :class="{ 'game-audio-voice': true, 'is-pause': isAudioPause }"
+      @click="isAudioPause = !isAudioPause"></span>
+
+    <el-dialog :visible.sync="extraDialog.visible"
+      width="300px" title="再加一轮">
+      <el-form :model="extraDialog.form" ref="form"
+        label-width="60px">
+        <el-form-item label="标题" required>
+          <el-input v-model="extraDialog.form.title"></el-input>
+        </el-form-item>
+        <el-form-item label="奖品">
+          <el-input v-model="extraDialog.form.gift"></el-input>
+        </el-form-item>
+        <el-form-item label="人数" required>
+          <el-input v-model.number="extraDialog.form.count" type="number"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="extraDialog.visible = false">取 消</el-button>
+        <el-button type="danger" @click="addExtraRun">确 定</el-button>
+      </div>
+    </el-dialog>
+
+    <el-dialog class="export-dialog" :visible.sync="exportDialog.visible"
+      width="70%" title="中奖纪录">
+      <div class="history-record" v-for="history in historyRecords">
+        <h3 class="history-record-title">
+          {{ history.title }} {{ history.subtitle ? (' - ' + history.subtitle) : '' }}
+        </h3>
+        <div class="history-record-names">
+          <span v-for="(name, i) in history.luckyNames">
+            <span v-if="i > 0"> 、 </span>{{ name }}
+          </span>
+        </div>
+      </div>
+    </el-dialog>
+  </div>
+
+  <script src="./lib/vue@2.5.13.js"></script>
+  <script src="./lib/element-ui@2.1.0.js"></script>
+  <script src="./src/conf.js"></script>
+  <script src="./src/data.js"></script>
+  <script src="./src/util.js"></script>
+  <script src="./src/app.js"></script>
+</body>
+</html>

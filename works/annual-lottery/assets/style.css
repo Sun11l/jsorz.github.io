@@ -1,0 +1,153 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+ul, li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+h1, h2, h3, p {
+  margin: 0;
+}
+body {
+  height: 100vh;
+  overflow: hidden;
+  background: transparent url('imgs/bg2.jpeg') no-repeat center;
+  background-size: cover;
+}
+#app {
+  position: relative;
+}
+.page-title {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  font-size: 20px;
+  color: #fee952;
+}
+
+.game-block {
+  margin: 20px;
+  color: #fff;
+}
+.game-block *{
+  text-align: center;
+}
+.game-title {
+  margin-bottom: 20px;
+  color: #fee952;
+}
+.game-title h2 {
+  font-size: 42px;
+}
+.game-title p.subtitle {
+  font-size: 30px;
+}
+.game-content {
+  margin-top: 20px;
+  padding: 0;
+}
+
+.big-text {
+  font-size: 50px;
+  padding: 50px;
+  color: #fee952;
+}
+.lucky-name {
+  font-size: 40px;
+  color: #fee952;
+}
+.random-name-list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-height: 400px;
+  max-width: 600px;
+  margin: 30px auto;
+}
+.random-name-list li {
+  height: 80px;
+  line-height: 80px;
+}
+
+/* game status */
+.game-ready {
+
+}
+.game-running {
+
+}
+.game-stop {
+
+}
+.game-break {
+  display: flex;
+  justify-content: space-around;
+}
+.game-record {
+  flex: 1;
+  color: #fee952;
+}
+.game-record h3 {
+  font-size: 32px;
+}
+.game-record .lucky-name {
+  font-size: 28px;
+  line-height: 40px;
+}
+
+/* controller */
+.game-control {
+  position: fixed;
+  bottom: 30px;
+  width: 100%;
+  text-align: center;
+}
+.game-control .el-button {
+  width: 150px;
+  height: 50px;
+  font-size: 22px;
+}
+.game-reset {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  padding: 0;
+  color: transparent;
+}
+.game-export {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  padding: 0;
+}
+.game-audio {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  visibility: hidden;
+}
+.game-audio-voice {
+  position: fixed;
+  bottom: 30px;
+  right: 20px;
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background: transparent url('imgs/voice_open.png') no-repeat center;
+  background-size: cover;
+  cursor: pointer;
+  opacity: 0.5;
+}
+.game-audio-voice.is-pause {
+  background-image: url('imgs/voice_close.png');
+}
+
+/* for export */
+.export-dialog .el-dialog__body {
+  padding: 10px 20px 20px 20px;
+}
+.history-record {
+  margin-bottom: 20px;
+}
