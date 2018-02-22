@@ -64,6 +64,7 @@ var util = {
     while (length-- && candidates.length) {
       i = util.randomInt(0, candidates.length - 1);
       results.push(candidates[i]);
+      // 不允许重复
       if (!duplicated) {
         candidates.splice(i, 1);
       }
@@ -76,6 +77,7 @@ var util = {
    * @param {Array} arr 给定一个数组
    * @returns {Array} - 乱序后的数组（原数组 is mutable）
    */
+  // TODO 比全排列的结果少
   shuffleArray: function (arr) {
     if (!Array.isArray(arr) || arr.length <= 1) {
       return arr;

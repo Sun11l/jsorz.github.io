@@ -25,6 +25,13 @@ function getInitialData() {
     },
     exportDialog: {
       visible: false
+    },
+    testDialog: {
+      visible: false,
+      inputName: '',
+      loopCount: 0,
+      totalCount: 0,
+      simulateTimes: 0
     }
   };
 }
@@ -73,17 +80,16 @@ new Vue({
       }
     },
     audioSrc: function() {
-      const dir = './media';
       switch(this.gameProcess.status) {
         case 'READY':
         case 'RUNNING':
-          return dir + '/running.mp3';
+          return 'https://fuss10.elemecdn.com/0/76/2db837df2d0bb60665342c54c0f6emp3.mp3';
         case 'STOP':
-          return dir + '/stop.mp3';
+          return 'https://fuss10.elemecdn.com/1/35/ce5dc7f42ed339a66fd5679a1b34amp3.mp3';
         case 'BREAK':
-          return dir + '/break.mp3';
+          return 'https://fuss10.elemecdn.com/b/f2/bb70eee21cb9df2bc3434cac87523mp3.mp3';
         default:
-          return dir + '/background.mp3';
+          return 'https://fuss10.elemecdn.com/0/f6/b4232b8d82a6e0a4abcf5580710abmp3.mp3';
       }
     },
     // 颁奖时该显示的前几轮中奖纪录
@@ -100,13 +106,18 @@ new Vue({
       if ($audio) {
         val ? $audio.pause() : $audio.play();
       }
+    },
+    'testDialog.inputName'() {
+      this.testDialog.loopCount = 0;
+      this.testDialog.totalCount = 0;
+      this.testDialog.simulateTimes = 0;
     }
   },
   methods: {
     next: function() {
       // 防双击 防误触
       this._lastActionTime = this._lastActionTime || 0;
-      if (new Date().getTime() - this._lastActionTime < 1000) {
+      if (new Date().getTime() - this._lastActionTime < 500) {
         // 1秒内不得连续操作
         return;
       }
@@ -234,10 +245,9 @@ new Vue({
       }).reverse();
 
       indexes.forEach(function(v) {
-        let res = that.candidates.splice(v, 1);
+        that.candidates.splice(v, 1);
       });
       this.randomIndexes = [];
-      console.log(this.candidates.length);
     },
 
     // 缓存恢复检测
@@ -275,6 +285,45 @@ new Vue({
         // clear localStorage
         window.localStorage.removeItem(STORAGE_KEY);
       });
+    },
+
+    startLuckyTest() {
+      this.testDialog.loopCount = 0;
+      // 初始是否洗牌
+      let candidates = V_BONUS_UTIL.shuffleArray(V_BONUS_NAMES.slice());
+
+      // 2个字的名字需补齐空格
+      let inputName = this.testDialog.inputName.trim();
+      inputName = inputName.length === 2 ? inputName.replace(/(\S)(\S)/, '$1  $2') : inputName;
+
+      let found = false;
+      let randomIndexes;
+      const PER_HIT_COUNT = 10; // 每次随机中奖人数
+      const PER_LOOP_COUNT = 10; // 每轮抽奖次数
+      const MAX_LOOP_COUNT = 1000; // 封顶 防溢出
+
+      while (!found && this.testDialog.loopCount < MAX_LOOP_COUNT) {
+        this.testDialog.loopCount++;
+        let tmpCount = 0;
+
+        while (!found && tmpCount < PER_LOOP_COUNT) {
+          tmpCount++;
+
+          randomIndexes = V_BONUS_UTIL.randomArray(PER_HIT_COUNT, {
+            min: 0,
+            max: candidates.length - 1
+          });
+          found = randomIndexes.map(index => candidates[index]).includes(inputName);
+
+          // remove duplicated
+          randomIndexes.sort((a, b) => (a - b)).reverse()
+            .forEach(i => candidates.splice(i, 1));
+        }
+      }
+
+      // for average
+      this.testDialog.totalCount += this.testDialog.loopCount;
+      this.testDialog.simulateTimes++;
     }
   },
 

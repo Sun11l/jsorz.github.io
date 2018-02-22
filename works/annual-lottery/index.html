@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>抽奖抽奖</title>
-  <link rel="stylesheet" href="./assets/element-ui@2.1.0.css">
+  <link rel="stylesheet" href="https://shadow.elemecdn.com/npm/element-ui@2.1.0/lib/theme-chalk/index.css">
   <link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
   <div id="app">
-    <div class="page-title">2018年运行检修工区联合新春联欢会</div>
+    <div class="page-title">JSORZ-2018联合新春联欢会</div>
 
     <div class="game-block">
       <div class="game-title">
@@ -22,7 +22,7 @@
       <div class="game-content">
         <!-- 即将抽奖 -->
         <div class="game-ready" v-if="gameProcess.status === 'READY'">
-          <!-- <div class="big-text">Ready</div> -->
+          <div class="big-text">Ready...GO!</div>
         </div>
         <!-- 摇奖中 -->
         <div class="game-running" v-if="gameProcess.status === 'RUNNING'">
@@ -58,10 +58,14 @@
       <el-button v-if="gameProcess.status === 'OVER'"
         key="extra-btn" type="danger" @click="extraDialog.visible = true">再加一轮</el-button>
     </div>
+
+    <!-- Backend Control -->
     <el-button class="game-reset" ref="reset"
       type="text" @click="reset">Reset</el-button>
     <el-button class="game-export" ref="export"
-      type="text" @click="exportDialog.visible = true">Export</el-button>
+      type="text" @click="exportDialog.visible = true">中奖纪录</el-button>
+    <el-button class="game-test"
+      type="text" @click="testDialog.visible = true">测人品</el-button>
 
     <audio class="game-audio" :src="audioSrc" ref="audio"
       autoplay :loop="gameProcess.status !== 'STOP'">
@@ -102,10 +106,21 @@
         </div>
       </div>
     </el-dialog>
+
+    <el-dialog :visible.sync="testDialog.visible" title="人品测试">
+      <p>测试你的名字需要抽奖多少次才能抽中=_=</p>
+      <el-input v-model="testDialog.inputName" placeholder="请输入你的名字"
+       style="width: 150px"></el-input>
+      <el-button type="danger" @click="startLuckyTest">看人品咯</el-button>
+      <p class="loop-count" v-show="testDialog.loopCount">
+        <span>第 {{ testDialog.loopCount }} 次模拟才中奖。。。</span>
+        <span>平均: {{ (testDialog.totalCount / this.testDialog.simulateTimes).toFixed(1) }}</span>
+      </p>
+    </el-dialog>
   </div>
 
-  <script src="./lib/vue@2.5.13.js"></script>
-  <script src="./lib/element-ui@2.1.0.js"></script>
+  <script src="https://shadow.elemecdn.com/npm/vue@2.5.13/dist/vue.min.js"></script>
+  <script src="https://shadow.elemecdn.com/npm/element-ui@2.1.0/lib/index.js"></script>
   <script src="./src/conf.js"></script>
   <script src="./src/data.js"></script>
   <script src="./src/util.js"></script>

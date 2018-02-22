@@ -111,16 +111,21 @@ body {
 }
 .game-reset {
   position: fixed;
-  top: 10px;
+  bottom: 10px;
   left: 10px;
   padding: 0;
-  color: transparent;
+  /* color: transparent; */
 }
 .game-export {
   position: fixed;
   top: 10px;
   right: 10px;
   padding: 0;
+}
+.game-test {
+  position: fixed;
+  top: 30px;
+  right: 15px;
 }
 .game-audio {
   position: fixed;
@@ -145,7 +150,7 @@ body {
 }
 
 /* for export */
-.export-dialog .el-dialog__body {
+.el-dialog__body {
   padding: 10px 20px 20px 20px;
 }
 .history-record {
