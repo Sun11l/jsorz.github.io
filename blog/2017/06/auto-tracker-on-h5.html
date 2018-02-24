@@ -100,7 +100,7 @@
 <meta property="og:description" content="前一阵团队里做了个项目，称为“无埋点圈选”，目的是在 app 中无需为特殊的按钮或事件编写埋点，可在 app 发布后通过可视化的方式来圈选需要“埋”的点，然后在 app 端通过配置下拉的方式来获取埋点信息，实现埋点数据的自动发送。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://jsorz.cn/images/captures/20170612_visual_parser.jpg">
-<meta property="og:updated_time" content="2018-02-24T13:27:59.000Z">
+<meta property="og:updated_time" content="2018-02-24T13:40:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="H5无埋点数据采集">
 <meta name="twitter:description" content="前一阵团队里做了个项目，称为“无埋点圈选”，目的是在 app 中无需为特殊的按钮或事件编写埋点，可在 app 发布后通过可视化的方式来圈选需要“埋”的点，然后在 app 端通过配置下拉的方式来获取埋点信息，实现埋点数据的自动发送。">
@@ -519,7 +519,6 @@
 <th>阶段</th>
 <th>状态</th>
 <th>备注</th>
-<th>对标 GrowingIO</th>
 </tr>
 </thead>
 <tbody>
@@ -528,45 +527,38 @@
 <td>圈选</td>
 <td><strong>FIXED</strong></td>
 <td><strong>暂时不直接过滤高为<code>0</code>的节点</strong>，区域裁剪时也加入了<code>overflow</code>的判断</td>
-<td>与 GIO 一致</td>
 </tr>
 <tr>
 <td>轮播 banner 不能圈（很依赖轮播的具体实现）</td>
 <td>圈选</td>
 <td>PENDING</td>
 <td>能圈，但只能圈当前那一帧的图片。如果图片撑满了整个轮播容器，那就没法圈到轮播整体。。<br><br>如果是通过<code>&lt;ul&gt;</code>定位实现的，<code>left</code> 或 <code>translate</code> 负值实现的轮播动画，<strong>则无法圈选</strong>（因为<code>&lt;ul&gt;</code>已经被判为不在 viewport 中）</td>
-<td>GIO 中不过滤不在屏幕中的元素，只高亮出“光标”当前位置下的元素，而不care它是否可见</td>
 </tr>
 <tr>
 <td>位于页面顶部的 fixed header 内容不方便圈（如果后面的元素设了padding）</td>
 <td>圈选</td>
 <td>PENDING</td>
 <td>案例：ctrip h5 顶部搜索 父容器被下方元素遮住<br><br><strong>后续考虑在前端做层叠的提示，让用户选择那一层的元素</strong></td>
-<td>GIO 中无此问题</td>
 </tr>
 <tr>
 <td>父容器设有<code>margin</code>，子元素定位时的参考元素在元素在父容器之外，会在区域裁剪时裁掉</td>
 <td>圈选</td>
 <td>部分缓解</td>
 <td>案例：<code>&lt;body&gt;</code>设了 margin, <code>&lt;div&gt;</code>子元素定位相对<code>&lt;html&gt;</code>，被认为超出父容器<code>&lt;body&gt;</code>边界。<br><br><strong>目前引入了子元素最大区域的概念，当父元素非<code>overflow</code>时，子元素可接受的范围可向右向下延生，延生到父元素的可接受最大区域</strong><br><br><strong>（只要路径上没有节节点设过<code>overflow</code>，原理上子元素可接受范围可延生到视窗的最右和最下）</strong><br><br><strong>注意：目前只接受向右向下延生到父元素之外，其他方向超出父元素时，仍然会被裁剪到父元素边界</strong></td>
-<td><strong>GIO 中不做区域裁剪</strong>，弊端是当子元素超出时，父元素又<code>overflow:hidden</code>，会导致无法圈选底层元素</td>
 </tr>
 <tr>
 <td>两个子元素区域之和正好等于父元素区域，就无法圈到父元素</td>
 <td>圈选</td>
 <td>PENDING</td>
 <td>现象就是：前端点不到父元素的区域</td>
-<td>GIO 同样问题</td>
 </tr>
 <tr>
 <td>开发者对 html body 设了 height: 100% 导致页面滚动后根节点区域缩小</td>
 <td>圈选</td>
 <td>FIXED</td>
 <td>在计算前先对<code>body</code>设<code>height: auto</code>，完了后再还原</td>
-<td>GIO O</td>
 </tr>
 <tr>
-<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -577,14 +569,12 @@
 <td>采集</td>
 <td>解决部分case</td>
 <td><strong>监听 touchstart / touchend 事件</strong>来判定，同时监听 click 事件来辅助<br><br>当前规则：touch 位移容忍范围为<code>&lt;=10px</code>，touch 时长容忍为<code>&lt;=750ms</code>，两次touch间隔时间<code>&gt;250ms</code>（参考了 zepto.js 中的阈值）<br><br>FUCK: <strong>仍无法排除 ios safari 下“双击放大”</strong>，会误判为 touchend 触发2次事件</td>
-<td>GIO 只监听 click <br><br><strong>我们也先改为 click，由于 touch 暂无法解决“双击”误发日志的问题</strong></td>
 </tr>
 <tr>
 <td>动态添加出来的元素，碰巧与圈选的元素 path 相同，会被视为1次触发</td>
 <td>采集</td>
 <td>低成本缓解</td>
 <td>已使用路径中的<code>id</code>减少了此类干扰（只匹配最里层<code>id</code>之后的 tag 和 index）<br>但无法保证用户所有圈选的控件元素都存在<code>id</code></td>
-<td>GIO 同样问题</td>
 </tr>
 </tbody>
 </table>
