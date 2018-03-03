@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[组合计数问题]]></title>
+    <url>%2Fblog%2F2018%2F03%2Fmath-counting-question.html</url>
+    <content type="text"><![CDATA[假设有 A、B、C 三种药丸，现在要从 A、B、C 三种药丸中取100粒进行调剂，规则如下： A、B、C 这三种药丸每种至少有1粒 不考虑药丸的顺序 同种药丸每粒都相同 问：药品调剂的组合共有多少种？ 排列组合回顾下排列 (Permutation) 与组合 (Combination) 的基本公式 $ P_n^k = C_n^k \times P_k^k $ $ C_{100-1}^{3-1} $ 三角形问题此问题来自 一个平庸的码农 先尝试用组合计数来求解 一种巧妙的方法]]></content>
+      <categories>
+        <category>随便</category>
+      </categories>
+      <tags>
+        <tag>Math</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[RN License 更改]]></title>
     <url>%2Fblog%2F2018%2F02%2Fopen-source-license.html</url>
     <content type="text"><![CDATA[【News】两天前，React Native 将 License 改成了 MIT，详见Commit 这是半年来 Facebook 第二次修改 React 相关的协议了，此前饱受喷击的 BSD + Patents 没几天就认怂了。与之前的 Commit 类似，React Native 也打开了 MIT 的大门。 图片引用自 如何选择开源许可证？ MIT是和BSD一样宽松的许可协议，作者只想保留版权，而无任何其他了限制。也就是说，你必须在你的发行版里包含原许可协议的声明，无论你是以二进制发布的还是以源代码发布的。]]></content>
