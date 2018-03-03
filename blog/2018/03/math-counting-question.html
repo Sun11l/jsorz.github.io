@@ -99,13 +99,14 @@
 <meta property="og:site_name" content="阿冒的前端之路">
 <meta property="og:description" content="假设有 A、B、C 三种药丸，现在要从 A、B、C 三种药丸中取100粒进行调剂，规则如下：  A、B、C 这三种药丸每种至少有1粒 不考虑药丸的顺序 同种药丸每粒都相同  问：药品调剂的组合共有多少种？">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://jsorz.cn/images/captures/20180302_combination_question.jpg">
 <meta property="og:image" content="http://jsorz.cn/images/captures/20180302_triangle_question.png">
 <meta property="og:image" content="http://jsorz.cn/images/captures/20180302_triangle_topology.png">
-<meta property="og:updated_time" content="2018-03-02T15:25:14.000Z">
+<meta property="og:updated_time" content="2018-03-03T06:19:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="组合计数问题">
 <meta name="twitter:description" content="假设有 A、B、C 三种药丸，现在要从 A、B、C 三种药丸中取100粒进行调剂，规则如下：  A、B、C 这三种药丸每种至少有1粒 不考虑药丸的顺序 同种药丸每粒都相同  问：药品调剂的组合共有多少种？">
-<meta name="twitter:image" content="http://jsorz.cn/images/captures/20180302_triangle_question.png">
+<meta name="twitter:image" content="http://jsorz.cn/images/captures/20180302_combination_question.jpg">
 
 
 
@@ -364,8 +365,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/随便/" itemprop="url" rel="index">
-                    <span itemprop="name">随便</span>
+                  <a href="/categories/其他/" itemprop="url" rel="index">
+                    <span itemprop="name">其他</span>
                   </a>
                 </span>
 
@@ -406,14 +407,28 @@
 </ul>
 <p>问：药品调剂的组合共有多少种？</p>
 <a id="more"></a>
-<h3 id="排列组合"><a href="#排列组合" class="headerlink" title="排列组合"></a>排列组合</h3><p>回顾下排列 (Permutation) 与组合 (Combination) 的基本公式</p>
-<p>$ P_n^k = C_n^k \times P_k^k $</p>
-<p>$ C_{100-1}^{3-1} $</p>
+<h3 id="排列组合"><a href="#排列组合" class="headerlink" title="排列组合"></a>排列组合</h3><p>首先回顾下排列 (Permutation) 与组合 (Combination) 的基本公式</p>
+<p>$ P_n^k = C_n^k \times P_k^k = \frac{n!}{(n-k)!} $</p>
+<p>上面的药品调剂问题，需要转化下模型，先将“100粒”改为“5粒”，看下有没有规律</p>
+<p><img src="/images/captures/20180302_combination_question.jpg"></p>
+<p>如图，准备好5个放药丸的盘子，再在盘子之间放入2块“隔板”，并规定在左起第1块隔板的左边都放 A，第2、3块隔板中间都放B，第3块隔板右边都放C。5个盘子共有4个间隙，因此组合数就是 $ C_4^2 $</p>
+<p>同理，换成“100粒”后，药品调剂的组合共有 $ C_{100-1}^{3-1} $ 种</p>
 <h3 id="三角形问题"><a href="#三角形问题" class="headerlink" title="三角形问题"></a>三角形问题</h3><p>此问题来自 <a href="https://myst729.github.io/#/blog/articles/2016/counting-triangles/" target="_blank" rel="external">一个平庸的码农</a></p>
+<p>下图中有多少个三角形？有没有什么好的计数策略</p>
 <p><img src="/images/captures/20180302_triangle_question.png"></p>
-<p>先尝试用组合计数来求解</p>
-<p>一种巧妙的方法</p>
+<p>先尝试用组合计数来求解，如果每个点与其他所有点 都存在连线的话，那么三角形个数就容易算了，就是</p>
+<blockquote>
+<p>任意3个点的组合数 - 3点在一条直线上的组合数</p>
+</blockquote>
+<p>其中“任意3个点的组合数”就是 $ C_n^3 $</p>
+<p>而“3点在一条直线上的组合数”只要找出所有的直线，再对直线上的节点数求 $ C_k^3 $</p>
+<p><strong>但是很遗憾，上图中不满足</strong>“每个点与其他所有点 都存在连线”。。。。</p>
+<p><a href="https://myst729.github.io/#/blog/articles/2016/counting-triangles/" target="_blank" rel="external">https://myst729.github.io/#/blog/articles/2016/counting-triangles/</a> 提供了一种巧妙的方法</p>
 <p><img src="/images/captures/20180302_triangle_topology.png"></p>
+<p>将三角形做拓扑变换（<a href="https://en.wikipedia.org/wiki/Topology" target="_blank" rel="external">Topology</a>），即可用如下数据结构简单的表示图形中的点关系</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line">  [&apos;A&apos;, &apos;A&apos;, &apos;A&apos;, &apos;A&apos;],</div><div class="line">  [&apos;B&apos;, &apos;C&apos;, &apos;D&apos;, &apos;E&apos;],</div><div class="line">  [&apos;H&apos;, &apos;G&apos;, &apos;F&apos;, &apos;E&apos;],</div><div class="line">  [&apos;H&apos;, &apos;I&apos;, &apos;J&apos;, &apos;K&apos;]</div><div class="line">]</div></pre></td></tr></table></figure>
+<p>再遍历变换后的矩形，只要满足矩形的4个节点有且只有3个不相同的节点，即代表一个三角形</p>
+<p>最后。。。答案是 <strong>24</strong></p>
 
       
     </div>
@@ -549,7 +564,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
