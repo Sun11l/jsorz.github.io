@@ -94,15 +94,15 @@
 <meta name="description" content="首先 javascript 中不存在多继承，并且也不推荐频繁使用继承。如果你也这么认为的话，那笔者的观点也就写完啦 233333…. 如果还想回顾下 javascript 中“继承”的前世今生，以及对“多继承”的讨论，不妨看下去。">
 <meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JS中的“多继承”(1)">
+<meta property="og:title" content="JS中的“多继承”-(1)">
 <meta property="og:url" content="http://jsorz.cn/blog/2018/03/multi-inheritance-1.html">
 <meta property="og:site_name" content="阿冒的前端之路">
 <meta property="og:description" content="首先 javascript 中不存在多继承，并且也不推荐频繁使用继承。如果你也这么认为的话，那笔者的观点也就写完啦 233333…. 如果还想回顾下 javascript 中“继承”的前世今生，以及对“多继承”的讨论，不妨看下去。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://jsorz.cn/images/captures/20170122_proto.jpg">
-<meta property="og:updated_time" content="2018-03-12T16:13:45.000Z">
+<meta property="og:updated_time" content="2018-03-13T00:28:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JS中的“多继承”(1)">
+<meta name="twitter:title" content="JS中的“多继承”-(1)">
 <meta name="twitter:description" content="首先 javascript 中不存在多继承，并且也不推荐频繁使用继承。如果你也这么认为的话，那笔者的观点也就写完啦 233333…. 如果还想回顾下 javascript 中“继承”的前世今生，以及对“多继承”的讨论，不妨看下去。">
 <meta name="twitter:image" content="http://jsorz.cn/images/captures/20170122_proto.jpg">
 
@@ -138,7 +138,7 @@
 
 
 
-  <title>JS中的“多继承”(1) | 阿冒的前端之路</title>
+  <title>JS中的“多继承”-(1) | 阿冒的前端之路</title>
   
 
 
@@ -328,7 +328,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JS中的“多继承”(1)</h1>
+          <h1 class="post-title" itemprop="name headline">JS中的“多继承”-(1)</h1>
         
 
         <div class="post-meta">
@@ -400,7 +400,7 @@
         <p>首先 javascript 中<strong>不存在多继承</strong>，并且也不推荐频繁使用继承。如果你也这么认为的话，那笔者的观点也就写完啦 233333…. 如果还想回顾下 javascript 中“继承”的前世今生，以及对“多继承”的讨论，不妨看下去。</p>
 <a id="more"></a>
 <h2 id="苦苦追求的语法糖"><a href="#苦苦追求的语法糖" class="headerlink" title="苦苦追求的语法糖"></a>苦苦追求的语法糖</h2><p>在ES6之前，在还没有使用 React, Vue 等框架之前，我们在做稍复杂的前端页面和组件时，会经常用模块化的思想去封装一些可复用的逻辑，会想着给 javascript 提供“类”的支持，再结合一些设计模式，就可以做出各种灵活的代码结构。</p>
-<p>我们知道 javascript 中并不存在“类”，存在的只是原型链，都是通过 <code>prototype</code> 去封装了“类”，可以说任何一个函数都可以被视为一个“类”（只要你愿意）</p>
+<p>我们知道 javascript 中并<strong>不存在 class</strong>，存在的只是原型链，都是通过函数和 <code>prototype</code> 去封装一些东西来模拟“类”。可以说任何一个函数都可以被视为一个“类”，只要你愿意。</p>
 <p>关于 <code>prototype</code> 不是本文的重点，笔者一直收藏了这张图经常用来给自己复习。</p>
 <p><img src="/images/captures/20170122_proto.jpg"></p>
 <p>那些年，我们一直在等待“类”的语法糖。。。</p>
