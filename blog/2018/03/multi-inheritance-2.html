@@ -75,7 +75,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="建站," />
+  <meta name="keywords" content="javascript," />
 
 
 
@@ -91,29 +91,21 @@
 
 
 
-<meta name="description" content="本文针对非软件行业人士，如何快速建站。这样的建站需求大多是面向中小公司，或者个体工商户，我大致分为两类。一类是门户型，只做内容的宣传或者产品引导，不涉及到客户公司的具体业务。另一类是业务型，即需要在网站上完成客户的具体业务，比如购买，或者收集用户的行为。">
-<meta name="keywords" content="建站">
+<meta name="description" content="首先 javascript 中不存在多继承，并且也不推荐使用继承。如果你也这么认为的话，那笔者的观点也就写完啦 233333…. 如果还想回顾下 javascript 中“继承”的前世今生，以及对“多继承”的讨论，不妨看下去。 （接上一篇）">
+<meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="(非专业)如何快速建站">
-<meta property="og:url" content="http://jsorz.cn/blog/2017/01/non-technical-site-making.html">
+<meta property="og:title" content="JS中的“多继承”-(2)">
+<meta property="og:url" content="http://jsorz.cn/blog/2018/03/multi-inheritance-2.html">
 <meta property="og:site_name" content="阿冒的前端之路">
-<meta property="og:description" content="本文针对非软件行业人士，如何快速建站。这样的建站需求大多是面向中小公司，或者个体工商户，我大致分为两类。一类是门户型，只做内容的宣传或者产品引导，不涉及到客户公司的具体业务。另一类是业务型，即需要在网站上完成客户的具体业务，比如购买，或者收集用户的行为。">
+<meta property="og:description" content="首先 javascript 中不存在多继承，并且也不推荐使用继承。如果你也这么认为的话，那笔者的观点也就写完啦 233333…. 如果还想回顾下 javascript 中“继承”的前世今生，以及对“多继承”的讨论，不妨看下去。 （接上一篇）">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://jsorz.cn/images/captures/20170105_sitestar_template.jpg">
-<meta property="og:image" content="http://jsorz.cn/images/captures/20170105_sitestar_custom.jpg">
-<meta property="og:image" content="http://jsorz.cn/images/captures/20170105_cndns_site_price.jpg">
-<meta property="og:image" content="http://jsorz.cn/images/captures/20170105_cndns_shop_price.jpg">
-<meta property="og:image" content="http://jsorz.cn/images/captures/20170105_faisco_price.jpg">
-<meta property="og:image" content="http://jsorz.cn/images/captures/20170105_weimob_demo.jpg">
-<meta property="og:image" content="http://jsorz.cn/images/captures/20170105_weimob_qr.png">
-<meta property="og:image" content="http://jsorz.cn/images/captures/20170105_qianmi_demo.jpg">
-<meta property="og:image" content="http://jsorz.cn/images/captures/20170105_qianmi_qr.png">
-<meta property="og:image" content="http://jsorz.cn/images/captures/20170105_baidu_tongji.jpg">
-<meta property="og:updated_time" content="2017-09-13T11:32:02.000Z">
+<meta property="og:image" content="http://jsorz.cn/images/captures/20180311_diamond_inherit.png">
+<meta property="og:image" content="http://jsorz.cn/images/captures/20180311_mro_example.png">
+<meta property="og:updated_time" content="2018-03-14T15:17:47.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="(非专业)如何快速建站">
-<meta name="twitter:description" content="本文针对非软件行业人士，如何快速建站。这样的建站需求大多是面向中小公司，或者个体工商户，我大致分为两类。一类是门户型，只做内容的宣传或者产品引导，不涉及到客户公司的具体业务。另一类是业务型，即需要在网站上完成客户的具体业务，比如购买，或者收集用户的行为。">
-<meta name="twitter:image" content="http://jsorz.cn/images/captures/20170105_sitestar_template.jpg">
+<meta name="twitter:title" content="JS中的“多继承”-(2)">
+<meta name="twitter:description" content="首先 javascript 中不存在多继承，并且也不推荐使用继承。如果你也这么认为的话，那笔者的观点也就写完啦 233333…. 如果还想回顾下 javascript 中“继承”的前世今生，以及对“多继承”的讨论，不妨看下去。 （接上一篇）">
+<meta name="twitter:image" content="http://jsorz.cn/images/captures/20180311_diamond_inherit.png">
 
 
 
@@ -141,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://jsorz.cn/blog/2017/01/non-technical-site-making.html"/>
+  <link rel="canonical" href="http://jsorz.cn/blog/2018/03/multi-inheritance-2.html"/>
 
 
 
 
 
-  <title>(非专业)如何快速建站 | 阿冒的前端之路</title>
+  <title>JS中的“多继承”-(2) | 阿冒的前端之路</title>
   
 
 
@@ -320,7 +312,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://jsorz.cn/blog/2017/01/non-technical-site-making.html">
+    <link itemprop="mainEntityOfPage" href="http://jsorz.cn/blog/2018/03/multi-inheritance-2.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="阿冒">
@@ -337,7 +329,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">(非专业)如何快速建站</h1>
+          <h1 class="post-title" itemprop="name headline">JS中的“多继承”-(2)</h1>
         
 
         <div class="post-meta">
@@ -349,8 +341,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-05T00:00:00+08:00">
-                2017-01-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-11T00:00:00+08:00">
+                2018-03-11
               </time>
             
 
@@ -372,8 +364,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/其他/" itemprop="url" rel="index">
-                    <span itemprop="name">其他</span>
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
                   </a>
                 </span>
 
@@ -406,158 +398,45 @@
       
 
       
-        <p>本文针对<em>非软件行业</em>人士，如何快速建站。这样的建站需求大多是面向中小公司，或者个体工商户，我大致分为两类。一类是门户型，只做内容的宣传或者产品引导，不涉及到客户公司的具体业务。另一类是业务型，即需要在网站上完成客户的具体业务，比如购买，或者收集用户的行为。</p>
+        <p>首先 javascript 中<strong>不存在多继承</strong>，并且也不推荐使用继承。如果你也这么认为的话，那笔者的观点也就写完啦 233333…. 如果还想回顾下 javascript 中“继承”的前世今生，以及对“多继承”的讨论，不妨看下去。</p>
+<p>（接上一篇）</p>
 <a id="more"></a>
-<h2 id="门户型网站"><a href="#门户型网站" class="headerlink" title="门户型网站"></a>门户型网站</h2><p>这类网站需求都比较简单，简单点都是放些公司的介绍、业务范围、联系方式等宣传材料就行了，再放个公司位置的百度地图，顶多再接个留言功能。另外的话，需要有个管理后台，可以让客户自己修改页面文章的内容。</p>
-<p>这类简单的门户型网站，找专业开发人员的话，估价在 3000 元左右，视个人或网站行业而定。若要求特殊的效果，比如3D场景，或者需要高度定制的交互效果的话，价格大几千或上至万元也是可能的（<a href="http://www.zhgtea.com/" target="_blank" rel="external">比如这种</a>）。</p>
-<p>对于前者简单的网站，没必要找专业人员开发，一般千元以内就能搞定，那就是使用“建站产品”。我这儿推荐两款：</p>
-<h3 id="1-建站之星：http-www-sitestar-cn"><a href="#1-建站之星：http-www-sitestar-cn" class="headerlink" title="1. 建站之星：http://www.sitestar.cn/"></a>1. 建站之星：<a href="http://www.sitestar.cn/" target="_blank" rel="external">http://www.sitestar.cn/</a></h3><p>建站之星是<a href="http://www.cndns.com/" target="_blank" rel="external">美橙互联</a>旗下的板块，可以到官网的<a href="http://www.cndns.com/cn/website/" target="_blank" rel="external">企业建站</a>板块下看。付的费用其实就是买“模板”，几百块就能买一个。同时它也提供了私人订制的服务，那就贵了，几千和上万的都有。</p>
-<p><img src="/images/captures/20170105_sitestar_template.jpg"></p>
-<p><img src="/images/captures/20170105_sitestar_custom.jpg"></p>
-<p>为什么我推荐这家公司的建站产品呢，因为我博客的域名就是在美橙互联上买的，它是国内比较早的搞域名注册和服务器托管的公司了，应该比<a href="https://www.aliyun.com/" target="_blank" rel="external">阿里云</a>和<a href="https://wanwang.aliyun.com/" target="_blank" rel="external">万网</a>（原来是 www.net.cn）都要早。因此论公司资质的话，“建站之星”作为美橙互联公司的企业建站产品，应该靠谱。</p>
-<p>这是建站的套餐价格，包含了服务器租费(占大头)、域名费(很便宜)、以及建站模板和后台服务费。</p>
-<p><img src="/images/captures/20170105_cndns_site_price.jpg"></p>
-<p><img src="/images/captures/20170105_cndns_shop_price.jpg"></p>
-<p>注：这里的“网店版”即我后面要说的<em>业务型网站</em></p>
-<h3 id="2-凡科：http-www-faisco-com"><a href="#2-凡科：http-www-faisco-com" class="headerlink" title="2. 凡科：http://www.faisco.com/"></a>2. 凡科：<a href="http://www.faisco.com/" target="_blank" rel="external">http://www.faisco.com/</a></h3><p>凡科的建站产品是我在知乎里看到的，该公司成立于2009年，相比美橙互联的公司资质稍逊，这一点可以从它们的官网上很容易感觉出来。</p>
-<p>凡科最大的一个优势就是价格，并且它提供免费版，可以先试用看效果。各版本的功能对比可详见：<a href="http://jz.faisco.com/proFunc.html" target="_blank" rel="external">http://jz.faisco.com/proFunc.html</a></p>
-<p><img src="/images/captures/20170105_faisco_price.jpg"></p>
-<p>最后看各人选择，想要长期稳定的话就选建站之星，毕竟公司规模大，配套设施多；但想要节约成本的话，可以先用凡科看是否能达到预期效果。这里有个对两者产品的使用评测：<a href="http://jz.faisco.com/news/443" target="_blank" rel="external">http://jz.faisco.com/news/443</a></p>
-<h2 id="业务型网站"><a href="#业务型网站" class="headerlink" title="业务型网站"></a>业务型网站</h2><p>其实上面介绍门户型网站的两个公司里也都包含“营销版”/“商城版”的产品，即业务型网站。</p>
-<h3 id="1-微盟：http-weimob-com"><a href="#1-微盟：http-weimob-com" class="headerlink" title="1. 微盟：http://weimob.com/"></a>1. 微盟：<a href="http://weimob.com/" target="_blank" rel="external">http://weimob.com/</a></h3><p><a href="http://weimob.com/" target="_blank" rel="external">微盟</a>在微信公众号开放后开始火了起来，我两三年前就听说过。当时有个被炒起来的概念“微商”，而微盟抓住了这条船，把微信商城做了起来。我前几天有专门打过咨询电话，了解到他们去年就得到了腾讯的投资，腾讯已是他们第二大股东。不言而论，微盟的微信商城产品肯定是市面上与微信结合做得最好的产品之一。（2017.1.10日更新，微盟已打通微信小程序，<a href="http://www.weimob.com/vshop/WXSmall/WxSmallUploadDetail" target="_blank" rel="external">详见使用说明</a>）</p>
-<p>这款产品叫<a href="http://www.weimob.com/website/info.html?id=1" target="_blank" rel="external">微盟旺铺</a>，我在微盟官网找了个客户案例：<a href="http://318325.m.weimob.com/vshop/index" target="_blank" rel="external">http://318325.m.weimob.com/vshop/index</a> </p>
-<p><img src="/images/captures/20170105_weimob_demo.jpg"></p>
-<p>可用以下二维码查看</p>
-<p><img src="/images/captures/20170105_weimob_qr.png"></p>
-<h3 id="2-千米网：http-www-qianmi-com"><a href="#2-千米网：http-www-qianmi-com" class="headerlink" title="2. 千米网：http://www.qianmi.com/"></a>2. 千米网：<a href="http://www.qianmi.com/" target="_blank" rel="external">http://www.qianmi.com/</a></h3><p><a href="http://www.qianmi.com/" target="_blank" rel="external">千米网</a>是我在<a href="http://www.njsd-china.org/" target="_blank" rel="external">南京软件开发者大会</a>上了解的这家公司，公司总部在南京，应该说是在江苏内做电商产品的较专业的公司。其实在前面介绍<a href="#section">门户型网站</a>时，建站之星和凡科的“营销版”/“网店版”也能满足商城的需求，但我会更倾向专一做电商解决方案的千米网的<a href="http://www.qianmi.com/products/ysc/" target="_blank" rel="external">云商城产品</a>。主打“魔方建站”的概念，即像玩魔方一样，一转就是一个面，电商的各个面。</p>
-<p>这是联系他们售前顾问，找到了一个示例：<a href="http://store148551.b2c.1000.com/" target="_blank" rel="external">http://store148551.b2c.1000.com/</a> <em>（注意这是测试的站点，请不要真下单）</em></p>
-<p>手机版/微信版的演示如图</p>
-<p><img src="/images/captures/20170105_qianmi_demo.jpg"></p>
-<p>可用以下二维码体验</p>
-<p><img src="/images/captures/20170105_qianmi_qr.png"></p>
-<h3 id="产品对比"><a href="#产品对比" class="headerlink" title="产品对比"></a>产品对比</h3><table>
-<thead>
-<tr>
-<th></th>
-<th>微盟 - 旺铺</th>
-<th>千米网 - 云商城</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>年费</td>
-<td>10800</td>
-<td>6800</td>
-</tr>
-<tr>
-<td>PC版</td>
-<td>无</td>
-<td>有</td>
-</tr>
-<tr>
-<td>手机版(手机浏览器)</td>
-<td>有</td>
-<td>有</td>
-</tr>
-<tr>
-<td>微信版</td>
-<td>同手机版</td>
-<td>同手机版</td>
-</tr>
-<tr>
-<td>搭建时间成本</td>
-<td>全包，1~2周交付</td>
-<td>提供教程，需要自己动手</td>
-</tr>
-<tr>
-<td>绑定域名</td>
-<td>不支持（统一在 m.weimob.com 下）</td>
-<td>支持</td>
-</tr>
-<tr>
-<td>绑定微信公众号</td>
-<td>支持，如果是微信服务号的话，可以互通</td>
-<td>支持，但仅是加个菜单链接</td>
-</tr>
-<tr>
-<td>支付宝付款</td>
-<td>支持</td>
-<td>不支持</td>
-</tr>
-<tr>
-<td>微信付款</td>
-<td>支持</td>
-<td>支持</td>
-</tr>
-<tr>
-<td>银行卡付款</td>
-<td>支持</td>
-<td>支持</td>
-</tr>
-<tr>
-<td>余额充值</td>
-<td>不支持</td>
-<td>支持，但作为买家一般不愿意充</td>
-</tr>
-<tr>
-<td>购物需否注册</td>
-<td>不需要，直接与买家微信绑定</td>
-<td>需要注册独立账号</td>
-</tr>
-<tr>
-<td>订单跟踪</td>
-<td>可在微信服务号中查看</td>
-<td>需要从公众号菜单进入商城再查看</td>
-</tr>
-<tr>
-<td>客服支持系统</td>
-<td>未询问 <br>（<em>期待与微信服务号的消息平台整合</em>）</td>
-<td>由合作的第三方公司提供客服系统 <br>合作价 199元/年</td>
-</tr>
-</tbody>
-</table>
-<p><strong>总结</strong></p>
-<ul>
-<li>要想和微信结合紧密，就用微盟的产品<ul>
-<li>优点是全包，把商品素材和微信服务号授权给他们，帮你全串通</li>
-<li>缺陷是不能绑定独立域名，也就不能使用百度来推广</li>
-<li>建议之后可考虑使用建站之星或凡科，做企业门户网站，绑定独立域名，使用百度推广，再在网站里引导用户关注与商城绑定的公众号</li>
-</ul>
-</li>
-<li>要想一次性搞定 PC 和 手机版 统一的商城，就用千米云商城<ul>
-<li>缺点是需要手工操作的部分比较多</li>
-<li>优点是一次性就支持域名，可为 PC 和 手机版 分别绑定二级域名</li>
-<li>但我不是很建议把 PC 版也做成商城，<strong>因为PC上的订单量只占20%，这是淘宝天猫的数据</strong></li>
-</ul>
-</li>
-</ul>
-<h2 id="网站运营"><a href="#网站运营" class="headerlink" title="网站运营"></a>网站运营</h2><p>顺应现在 Mobile First 的潮流，我的建站思路是</p>
-<ul>
-<li>先做好移动版的站点，一开始不要在 PC 版投入过多人力财力</li>
-<li>使用微信公众号来运营网站，初期不建议做独立 App，费钱且黏度比微信低</li>
-<li>待积累一定量客户后，再做一个 PC 版的主页，引流到公众号。如果体量真的上去了，再考虑做 PC 上的业务系统</li>
-</ul>
-<h3 id="1-微信运营"><a href="#1-微信运营" class="headerlink" title="1. 微信运营"></a>1. 微信运营</h3><p>微信公众号的申请是免费的，建议使用公司名义去注册。使用公司营业执照完成认证，只需 300元 的年费，但这样就可以升级为微信“服务号”，拥有更多的能力。</p>
-<p>微信有配套的后台系统，可管理公众号的菜单，推送消息文章。找人做些软文和内容策划，运营的成本很低。</p>
-<h3 id="2-百度推广"><a href="#2-百度推广" class="headerlink" title="2. 百度推广"></a>2. 百度推广</h3><p><a href="http://e.baidu.com/" target="_blank" rel="external">百度推广</a>是百度重要的收入来源，其两大重要产品就是<a href="http://e.baidu.com/product?subsite=js" target="_blank" rel="external">关键词排名</a>和<a href="http://e.baidu.com/product-net?subsite=js" target="_blank" rel="external">网盟推广</a>。关键词就不多说了，网盟推广就是指在与百度合作的上百万家网站的广告位上推送你的网站和图片链接。</p>
-<p>我也咨询过百度推广的销售顾问，首次开通的话需要 1000元开通费 + 5000元广告费。其中，如果你已有独立域名的网站，1000元开通费会在3个月后返回到余额账户中。而广告费是按次数扣费的，即用户通过百度的推广点击进入你的网站，网站显示正常的话就要扣1次费。</p>
-<p>竞价排名，这个词也许听说过，是指对具体一个关键词的出价，出价越高则会越优先显示在搜索结果的前排。但也并不绝对，假设你现在的出价可以排在搜索的前3页，仍然可以通过对网站标题和内容的更新，主要是内容要有新意，keywords 写得好，慢慢地你的网站是可以上升到第1页的。这就是所谓的 SEO 优化。</p>
-<p>我听销售顾问这么说，一般不是很通用很常见的关键词，只要出到关键词的平均价，一般都能挤进前两页，后期就靠网站运营慢慢提升排名。而这关键词的价格，要根据所覆盖的城市，南京一个价，江苏一个价，江浙沪又是一个价，要覆盖全国就更贵了。</p>
-<p>我这儿只能提供一个粗略的数字，1~3元/次，都是普通词语（不是热门词）的平均价，可以估算下自己网站推广的预算。一个推广账号里可以配置1万个关键词，要对每个词语都出价，扣费也是对每个词语累计的。</p>
-<h2 id="数据统计服务"><a href="#数据统计服务" class="headerlink" title="数据统计服务"></a>数据统计服务</h2><p>网站做了后，运营起来后，当然还需要经常观察下网站的使用情况，包括最基本的 PV / UV 这样的数据，进阶些可能要看各页面的访问量分布以及新老用户的占比。再高级些也许还要查看一些转化率数据，比如从 <code>商品详情</code>=&gt;<code>加入购物车</code>=&gt;<code>下单</code>，每个步骤的转化比例。</p>
-<p>对于这样的数据统计和观察需求，我首推<a href="http://tongji.baidu.com/" target="_blank" rel="external">百度统计</a>，不仅仅是因为我这个博客也使用了它，而是这两三年里我确实看到了<a href="http://tieba.baidu.com/p/4844070135" target="_blank" rel="external">它在进步</a>。（关键还是免费的）</p>
-<p><img src="/images/captures/20170105_baidu_tongji.jpg"></p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>知乎讨论：<a href="https://www.zhihu.com/question/26027774" target="_blank" rel="external">https://www.zhihu.com/question/26027774</a></p>
-<p>建站之星：<a href="http://www.sitestar.cn/" target="_blank" rel="external">http://www.sitestar.cn/</a></p>
-<p>凡科建站：<a href="http://jz.faisco.com/" target="_blank" rel="external">http://jz.faisco.com/</a></p>
-<p>微盟首页：<a href="http://weimob.com/" target="_blank" rel="external">http://weimob.com/</a></p>
-<ul>
-<li>旺铺宣传页：<a href="http://www.weimob.com/website/topic/wangpu" target="_blank" rel="external">http://www.weimob.com/website/topic/wangpu</a></li>
-<li>旺铺产品手册：<a href="http://www.weimob.com/website/site/help?help=12" target="_blank" rel="external">http://www.weimob.com/website/site/help?help=12</a></li>
-</ul>
-<p>千米网-云商城：<a href="http://www.qianmi.com/products/ysc/" target="_blank" rel="external">http://www.qianmi.com/products/ysc/</a></p>
-<p>百度推广：<a href="http://e.baidu.com/" target="_blank" rel="external">http://e.baidu.com/</a></p>
-<p>百度统计：<a href="http://tongji.baidu.com/" target="_blank" rel="external">http://tongji.baidu.com/</a></p>
+<h2 id="试试多继承"><a href="#试试多继承" class="headerlink" title="试试多继承"></a>试试多继承</h2><p>贪心是人之常情，有了“继承”后，我们就会想要“多继承”。即使在后端语言中，也没有几个语言能真正实现多继承，笔者只知道 C++ 和 python 提供了多继承的语法，而像 Java 只允许继承一个父类，但可以同时 <code>implements</code> 多个接口类，也算一种变相的多继承吧。</p>
+<h3 id="多继承要考虑的问题"><a href="#多继承要考虑的问题" class="headerlink" title="多继承要考虑的问题"></a>多继承要考虑的问题</h3><p>多继承并没有想象的那么美好，首先是对 <code>instanceof</code> 提出了更高的要求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">class A &#123;&#125;</div><div class="line">class B &#123;&#125;</div><div class="line">// 假定有支持多继承的语法</div><div class="line">class C extends A, B &#123;&#125;</div><div class="line">// 那么 C 的实例对象，应该同时也是 A 和 B 的 instance</div><div class="line">let c = new C()</div><div class="line">c instanceof C  // true</div><div class="line">c instanceof A  // true</div><div class="line">c instanceof B  // true</div></pre></td></tr></table></figure>
+<p>如上示例，在多继承中必须将所有的父类标识记录在子类中，才能让 <code>instanceof</code> 实现上面的效果。而 javascript 中只有 <code>prototype</code> 链，该死的还约束了一个对象只能指定一个 <code>prototype</code>，所以还得另外想办法去模拟 <code>instanceof</code></p>
+<p>这还不算啥，请看下一张图</p>
+<p><img src="/images/captures/20180311_diamond_inherit.png"></p>
+<p>这是多继承中典型的问题，称为 Diamond Problem，当 A, B, C 中都定义了一个相同名称的函数时，而在 D 的实例对象中调用这个函数时，究竟应该去执行谁。。。</p>
+<h3 id="间接多继承"><a href="#间接多继承" class="headerlink" title="间接多继承"></a>间接多继承</h3><p>先退而求其次，我们借鉴了 Java 中的思路，实际只继承一个类，通过其他方式将其他类的功能融入。Java 中可以用 <code>Interface</code> 约束一个类应该拥有的行为，当然 javascript 也可以这么做，实现 interface 的语法糖，检查“类”中有没有重写 interface 中的所有函数。但这样的话，interface 除了做校验之用，没有实际意义，不如直接 mixin 的方式更实在。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<h3 id="MRO算法"><a href="#MRO算法" class="headerlink" title="MRO算法"></a>MRO算法</h3><p>Method Resolution Order (MRO) 指的是在继承结构中确定类的线性顺序，例如 <code>C =&gt; B =&gt; A</code> 表示 C 继承 B，B 继承 A，那么 C 的 MRO 就是 <code>C B A</code>，也就意味着当调用 C 实例中的一个函数时，会按照 <code>C B A</code> 的优先级顺序去“寻找”该函数。在单继承的结构中自然没有问题，MRO 是为了解决前面所说的多继承中 Diamond Problem</p>
+<p>常用的<a href="https://en.wikipedia.org/wiki/C3_linearization" target="_blank" rel="external">C3算法</a>就是用来计算 MRO，在 python 文档中有对其的完整描述，这里用一个例子简述下算法流程。</p>
+<p>假设现在有这样的多继承结构</p>
+<p><img src="/images/captures/20180311_mro_example.png"></p>
+<p>首先引入类的线性顺序的表示方法，在上图中可以看到 <code>B =&gt; Y =&gt; O</code> 这一部分是单继承的结构，显然 B 的 MRO 为 <code>B Y O</code>，记为 L(B) = BYO</p>
+<p>然后还要引入几个符号，在 MRO 的线性顺序中，用 head 表示第一个元素，用 tail 表示余下部分。例如，<code>B Y O</code> 中的 head 就是 <code>B</code>，tail 则是 <code>Y O</code>。MRO 中只有一个元素，如图中的 O 元素，head 为<code>O</code>，tail 则是空。</p>
+<p>接下来是最关键的，图中 A 的 MRO 记为 L(A(X, Y))，A(X, Y) 表示 A 同时继承了 X 和 Y，那么</p>
+<p>L(A(X, Y)) = A + merge(L(X), L(Y), XY)</p>
+<p>其中 merge 的规则如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">取出第一个序列的 head</div><div class="line">如果，该 head 不在其它序列的 tail 中</div><div class="line">	则把这个 head 添加到结果中并从所有的序列中移除它</div><div class="line">否则，用下一个序列的 head 重复上一步</div><div class="line">直到所有序列中的所有元素都被移除（或者无法找到一个符合的head）</div></pre></td></tr></table></figure>
+<p>最后我们来计算下上图中各个类的线性顺序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">L(O) = O</div><div class="line">L(X) = X + L(O) = XO</div><div class="line">L(Y) = Y + L(O) = YO</div><div class="line">L(A) = A + merge(L(X), L(Y), XY)</div><div class="line">	 = A + merge(XO, YO, XY)</div><div class="line">	 = AX + merge(O, YO, Y)</div><div class="line">	 = AXY + merge(O, O)</div><div class="line">	 = AXYO</div><div class="line">L(B) = B + L(Y) = BYO</div><div class="line">L(C) = C + merge(L(A), L(B), AB)</div><div class="line">	 = C + merge(AXYO, BYO, AB)</div><div class="line">	 = CA + merge(XYO, BYO, B)</div><div class="line">	 = CAX + merge(YO, BYO, B)</div><div class="line">	 = CAXB + merge(YO, YO)</div><div class="line">	 = CAXBYO</div></pre></td></tr></table></figure>
+<p>上述多继承结构的 python 示例可参见 <a href="https://glot.io/snippets/ez5bqslav2" target="_blank" rel="external">https://glot.io/snippets/ez5bqslav2</a>  输出了 C 这个类的 MRO 即 <code>C A X B Y O</code></p>
+<p>当然C3算法也有 bad case，会导致上述的 merge 在中途失败，更多细节可参考 <a href="https://www.python.org/download/releases/2.3/mro/" target="_blank" rel="external">https://www.python.org/download/releases/2.3/mro/</a>  总之不推荐设计出过于复杂的多继承结构 =_=</p>
+<h3 id="模拟多继承"><a href="#模拟多继承" class="headerlink" title="模拟多继承"></a>模拟多继承</h3><p>Dojo多继承 <a href="http://driftcloudy.iteye.com/blog/909160" target="_blank" rel="external">http://driftcloudy.iteye.com/blog/909160</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">var A = declare(null, &#123;</div><div class="line">// constructor, properties, and methods go here</div><div class="line">// ...</div><div class="line">&#125;);</div><div class="line">var B = declare(null, &#123;</div><div class="line">// constructor, properties, and methods go here</div><div class="line">// ...</div><div class="line">&#125;);</div><div class="line">var C = declare([A, B], &#123;</div><div class="line">// constructor, properties, and methods go here</div><div class="line">// ...</div><div class="line">&#125;);</div><div class="line">var D = declare(A, &#123;</div><div class="line">// constructor, properties, and methods go here</div><div class="line">// ...</div><div class="line">&#125;);</div><div class="line"> </div><div class="line">var a = new A(), b = new B(), c = new C(), d = new D();</div><div class="line"> </div><div class="line">console.log(a.isInstanceOf(A)); // true</div><div class="line">console.log(b.isInstanceOf(A)); // false</div><div class="line">console.log(c.isInstanceOf(A)); // true</div><div class="line">console.log(d.isInstanceOf(A)); // true</div></pre></td></tr></table></figure>
+<p>dojo.declare <a href="https://github.com/dojo/dojo/blob/master/_base/declare.js#L554" target="_blank" rel="external">https://github.com/dojo/dojo/blob/master/_base/declare.js#L554</a></p>
+<h2 id="为什么不建议多继承"><a href="#为什么不建议多继承" class="headerlink" title="为什么不建议多继承"></a>为什么不建议多继承</h2><p>我们使用继承的时候，我们需要确信使用继承确实是有效可行的办法。那么到底要不要使用继承呢？《Think in Java》中提供了解决办法：问一问自己是否需要从子类向父类进行向上转型。如果必须向上转型，则继承是必要的，但是如果不需要，则应当好好考虑自己是否需要继承。</p>
+<p>用组合的方式来解耦</p>
+<h3 id="不推荐继承"><a href="#不推荐继承" class="headerlink" title="不推荐继承"></a>不推荐继承</h3><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a href="https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch4.md" target="_blank" rel="external">https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch4.md</a></p>
+<p><a href="https://docs.oracle.com/javase/tutorial/java/IandI/polymorphism.html" target="_blank" rel="external">https://docs.oracle.com/javase/tutorial/java/IandI/polymorphism.html</a></p>
+<p><a href="https://www.python.org/download/releases/2.3/mro/" target="_blank" rel="external">https://www.python.org/download/releases/2.3/mro/</a></p>
+<p><a href="https://en.wikipedia.org/wiki/C3_linearization" target="_blank" rel="external">https://en.wikipedia.org/wiki/C3_linearization</a></p>
+<p><a href="http://blog.csdn.net/kittyjie/article/details/72828470" target="_blank" rel="external">http://blog.csdn.net/kittyjie/article/details/72828470</a></p>
+<p><a href="https://stackoverflow.com/questions/29879267/es6-class-multiple-inheritance" target="_blank" rel="external">ES6 Class Multiple inheritance</a></p>
+<p><a href="https://www.h5jun.com/post/mixin-in-es6.html" target="_blank" rel="external">ES6 中优雅的 mixin 式继承</a></p>
+<p><a href="https://segmentfault.com/a/1190000003798438" target="_blank" rel="external">https://segmentfault.com/a/1190000003798438</a></p>
 
       
     </div>
@@ -587,7 +466,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/建站/" rel="tag"># 建站</a>
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
           
         </div>
       
@@ -600,8 +479,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2016/12/the-end-of-2016.html" rel="next" title="2016: 生活不止眼前的苟且">
-                <i class="fa fa-chevron-left"></i> 2016: 生活不止眼前的苟且
+              <a href="/blog/2018/03/multi-inheritance-1.html" rel="next" title="JS中的“多继承”-(1)">
+                <i class="fa fa-chevron-left"></i> JS中的“多继承”-(1)
               </a>
             
           </div>
@@ -609,10 +488,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2017/01/prototype-in-detail.html" rel="prev" title="深入prototype">
-                深入prototype <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -763,7 +638,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#门户型网站"><span class="nav-number">1.</span> <span class="nav-text">门户型网站</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-建站之星：http-www-sitestar-cn"><span class="nav-number">1.1.</span> <span class="nav-text">1. 建站之星：http://www.sitestar.cn/</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-凡科：http-www-faisco-com"><span class="nav-number">1.2.</span> <span class="nav-text">2. 凡科：http://www.faisco.com/</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#业务型网站"><span class="nav-number">2.</span> <span class="nav-text">业务型网站</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-微盟：http-weimob-com"><span class="nav-number">2.1.</span> <span class="nav-text">1. 微盟：http://weimob.com/</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-千米网：http-www-qianmi-com"><span class="nav-number">2.2.</span> <span class="nav-text">2. 千米网：http://www.qianmi.com/</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#产品对比"><span class="nav-number">2.3.</span> <span class="nav-text">产品对比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网站运营"><span class="nav-number">3.</span> <span class="nav-text">网站运营</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-微信运营"><span class="nav-number">3.1.</span> <span class="nav-text">1. 微信运营</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-百度推广"><span class="nav-number">3.2.</span> <span class="nav-text">2. 百度推广</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据统计服务"><span class="nav-number">4.</span> <span class="nav-text">数据统计服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#试试多继承"><span class="nav-number">1.</span> <span class="nav-text">试试多继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#多继承要考虑的问题"><span class="nav-number">1.1.</span> <span class="nav-text">多继承要考虑的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#间接多继承"><span class="nav-number">1.2.</span> <span class="nav-text">间接多继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MRO算法"><span class="nav-number">1.3.</span> <span class="nav-text">MRO算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模拟多继承"><span class="nav-number">1.4.</span> <span class="nav-text">模拟多继承</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么不建议多继承"><span class="nav-number">2.</span> <span class="nav-text">为什么不建议多继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#不推荐继承"><span class="nav-number">2.1.</span> <span class="nav-text">不推荐继承</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">3.1.</span> <span class="nav-text">参考资料</span></a></li></ol></li></ol></div>
             
 
           </div>
