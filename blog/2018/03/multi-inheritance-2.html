@@ -101,7 +101,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://jsorz.cn/images/captures/20180316_diamond_inherit.png">
 <meta property="og:image" content="http://jsorz.cn/images/captures/20180316_mro_example.png">
-<meta property="og:updated_time" content="2018-03-16T14:59:03.000Z">
+<meta property="og:updated_time" content="2018-03-17T02:41:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS中的“多继承”-(2)">
 <meta name="twitter:description" content="首先 javascript 中不存在多继承，并且也不推荐使用继承。如果你也这么认为的话，那笔者的观点也就写完啦 233333…. 如果还想回顾下 javascript 中“继承”的前世今生，以及对“多继承”的讨论，不妨看下去。 （接上一篇）">
@@ -446,7 +446,7 @@
 <p>归根到底还是”没有查函数表“的锅！或者我们在使用方式上做强约束，多继承中的所有函数调用都必须经过统一的形如 <code>invoke(methodName, args)</code> 的接口，在 invoke 时根据 MRO 的优先级顺序，依次查找有无 methodName 的函数，再真正调用。</p>
 <h2 id="为什么不建议继承"><a href="#为什么不建议继承" class="headerlink" title="为什么不建议继承"></a>为什么不建议继承</h2><p>说了那么多，笔者的体会是<strong>不要想着继承</strong>，<strong>不要想着继承</strong>，<strong>不要想着继承</strong>。。。</p>
 <p>javascript 本身就不是面向对象的语言，干嘛要让它做它不擅长的事情 =_=  虽然语法糖已经提供了”类“的支持，那是照顾有面向对象想法的人，但它本质上不同于其他语言中的继承。不要把他人的宽容当作放任的理由，能模拟继承就不错了，就别再惦记“多继承”了。</p>
-<p>再回过头来想一想，我们为什么需要继承？继承是一种强耦合关系，到底是否有必要用继承，可以考虑下在应用场景中是否需要用父类型去接收子类型的实例，即子类向父类的向上转型。在 javascript 中不会出现这样的需求，应该更多使用组合的方式以代替继承。</p>
+<p>再回过头来想一想，我们为什么需要继承？继承是一种强耦合关系，到底是否有必要用继承，可以考虑下在应用场景中是否需要用父类型去接收子类型的实例，即子类向父类的向上转型。在 javascript 中不会出现这样的需求，应该更多使用组合的方式以代替继承，以及函数式编程也许是更好的方案。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文从 javascript 对“类”的语言机制出发，回顾了随着语言的进步，“继承”在 javascript 中变得越来越方便。然后讨论了“多继承”时需要考虑的问题，介绍了 Method Resolution Order (MRO)，并尝试在 javascript 中模拟“多继承”。</p>
 <p>然而，javascript 本质上不存在继承的概念，这种通过 prototype 模拟出来的“多继承”不会很完美，体验上比原生支持继承或多继承的语言要差的多。因此不要想着多继承，javascript 中也不建议使用继承。</p>
 <h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a href="https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch4.md" target="_blank" rel="external">https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch4.md</a></p>
