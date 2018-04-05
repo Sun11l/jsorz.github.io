@@ -99,7 +99,7 @@
 <meta property="og:site_name" content="阿冒的前端之路">
 <meta property="og:description" content="之前一直无脑用着 cli 脚手架，用着默认生成的配置，没有去仔细看 Babel 文档。直到最近接入了前端报错监控后，才发现了许多问题。这里整理下关于 babel preset 与 polyfill 的一些点">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-05T09:52:29.000Z">
+<meta property="og:updated_time" content="2018-04-05T10:00:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="babel preset ≠ polyfill">
 <meta name="twitter:description" content="之前一直无脑用着 cli 脚手架，用着默认生成的配置，没有去仔细看 Babel 文档。直到最近接入了前端报错监控后，才发现了许多问题。这里整理下关于 babel preset 与 polyfill 的一些点">
@@ -493,7 +493,7 @@
 </thead>
 <tbody>
 <tr>
-<td>在<script>前插入 babel-polyfill 的CDN文件</td>
+<td>在<code>&lt;script&gt;</code>前插入 babel-polyfill 的CDN文件</td>
 <td>大而全</td>
 <td>打包过程无法参与，无法做 tree shaking 优化</td>
 </tr>
@@ -503,13 +503,13 @@
 <td>打包后文件体积增大</td>
 </tr>
 <tr>
-<td>在入口文件引入 core-js 自行取所需</td>
+<td>在入口文件引入 <a href="https://github.com/zloirock/core-js#commonjs" target="_blank" rel="external">core-js</a> 自行取所需</td>
 <td>最小化</td>
 <td>以后会不断追加所需，容易遗漏</td>
 </tr>
 </tbody>
 </table>
-</script></td></tr></tbody></table>
+
       
     </div>
 
